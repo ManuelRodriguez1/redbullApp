@@ -25,12 +25,10 @@ export const RecordVideo = () => {
     const chunks = useRef<any[]>([]);
     
     const startRecording = () =>{
-        const loader = document.getElementById('loader')
-        loader?.classList.add('loader')
-        loader?.classList.remove('opacity-0')
-        
+
         if ( isRecording ) return
         if ( !streamRef.current ) return
+        
         streamRecorderRef.current = new MediaRecorder( streamRef.current )
         streamRecorderRef.current.start()
         streamRecorderRef.current.ondataavailable = ( e: BlobEvent ) => {
@@ -38,6 +36,9 @@ export const RecordVideo = () => {
                 chunks.current.push( e.data )
             }
         }
+        const loader = document.getElementById('loader')
+        loader?.classList.add('loader')
+        loader?.classList.remove('opacity-0')
         setIsRecording( true )
         audio.play()
         timerInit()
