@@ -1,5 +1,6 @@
 ---
-
+import { RecordVideo } from '../components/react/recordVideo'
+import Styles from "../css/styles.astro";
 ---
 
 <html lang="en">
@@ -8,9 +9,15 @@
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
+		<title>RedBull App</title>
+		<Styles />
 	</head>
 	<body>
-		<h1>Astro</h1>
+		<div class="w-screen">
+			<RecordVideo client:only />
+		</div>
+
+		<script is:inline src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.0/flowbite.min.js"></script>
 	</body>
 </html>
+

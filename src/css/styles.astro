@@ -1,0 +1,18 @@
+<style is:global>
+
+.loader:after{
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 0;
+    background: #1B3281;
+    animation: 60s prog ease-in 1;
+  }
+  
+  @keyframes prog {
+    to  { width: 100%; }
+  }
+
+</style>
