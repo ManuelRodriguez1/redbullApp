@@ -1,11 +1,13 @@
 import { useEffect, useRef, useState } from "react"
 import Swal from "sweetalert2";
 
+const _urlImage = 'upload/l_fetch:aHR0cHM6Ly9yZXMuY2xvdWRpbmFyeS5jb20vZGlkYm41cHY2L2ltYWdlL3VwbG9hZC92MTY5ODI0NTk5MC9zYW1wbGVzL3JlYnVsbC9tYXJjb1JlZGJ1bGxfYzRhajJsLnBuZw==/fl_layer_apply/l_audio:v1698247701:audio:beat_mix_cttg7q/fl_layer_apply'
+
 export const RecordVideo = () => {
 
     const url: string = "https://api.cloudinary.com/v1_1/didbn5pv6/auto/upload";        
     const formData = new FormData();
-    const timer: number = 60 //cantidad de seg
+    const timer: number = 30 //cantidad de seg
 
     const [isRecording, setIsRecording] = useState<boolean>( false )
     const [timesUp, setTimesUp] = useState<number>( 0 )
@@ -21,6 +23,7 @@ export const RecordVideo = () => {
 
     const [audioSource, setAudioSource] = useState<string>('')
     const [videoSource, setVideoSource] = useState<string>('')
+    const [loading, setLoading] = useState(false)
 
     const chunks = useRef<any[]>([]);
     
@@ -70,18 +73,23 @@ export const RecordVideo = () => {
     }
 
     const uploadFile = ( blob: Blob ) => {
-        
+
         formData.append("file", blobToFile( blob ));
         formData.append("upload_preset", "zt69ebf3");
-    
+          
+        console.log('Im in')
+
         fetch(url, {
             method: "POST",
             body: formData
         }).then(( response ) => {
+            setLoading( true )
             return response.text();
         }).then(( data ) => {
+            setLoading( false )
             const { secure_url } = JSON.parse( data )
-            setDownloadLink( secure_url )
+            const newUrl = secure_url.split('upload')
+            setDownloadLink( newUrl[0]+_urlImage+newUrl[1] )
         });
 
 
@@ -98,8 +106,9 @@ export const RecordVideo = () => {
 
         (async () => {
             audio = document.getElementById("beat")
-
+        
             const gotStream = ( stream: MediaStream ) => {
+        
                 streamRef.current = stream
                 if (videoRef.current) {
                     videoRef.current.srcObject = stream
@@ -135,7 +144,8 @@ export const RecordVideo = () => {
       const blob = new Blob( 
         chunks.current, 
         { 
-            type: 'video/x-matroska;codecs=avc1,opus',
+            // type: 'video/x-matroska;codecs=avc1,opus',
+            type: 'video/mp4;codecs=avc1',
         })
         // setDownloadLink( URL.createObjectURL(blob) )
         uploadFile( blob )
@@ -155,13 +165,15 @@ export const RecordVideo = () => {
 
     return (
         <>  
+            { ( loading ) && ( <span className="loader_2"></span> ) }
+            
 
             <div className="absolute w-11/12 h-5 left-1/2 bottom-44 -translate-x-2/4 rounded-xl overflow-hidden">
                 {/* <div className="h-full bg-blue-500 transition ease-linear" style={{ width: `50%` }}></div> */}
                 <span id="loader"
                     className="block opacity-0 relative h-full w-full border border-white border-solid rounded-[10px] overflow-hidden"></span>
             </div>
-            <video ref={ videoRef } className="h-screen w-screen object-cover" autoPlay muted></video>
+            <video ref={ videoRef } className="h-screen w-screen object-cover" autoPlay></video>
             <audio id="beat" controls className="hidden">
                 <source type="audio/mp3" src="./beat_mix.mp3" />
             </audio>
