@@ -7,13 +7,13 @@ export const RecordVideo = () => {
 
     const url: string = "https://api.cloudinary.com/v1_1/didbn5pv6/auto/upload";        
     const formData = new FormData();
-    const timer: number = 30 //cantidad de seg
+    const timer: number = 8 //cantidad de seg
 
     const [isRecording, setIsRecording] = useState<boolean>( false )
     const [timesUp, setTimesUp] = useState<number>( 0 )
     let audio: any = ''
     
-    
+    console.log('component')
 
     const videoRef = useRef<HTMLVideoElement>(null)
     const streamRef = useRef<MediaStream | null>(null)
@@ -28,6 +28,7 @@ export const RecordVideo = () => {
     const chunks = useRef<any[]>([]);
     
     const startRecording = () =>{
+        console.log('StartRecording')
 
         if ( isRecording ) return
         if ( !streamRef.current ) return
@@ -35,10 +36,13 @@ export const RecordVideo = () => {
         streamRecorderRef.current = new MediaRecorder( streamRef.current )
         streamRecorderRef.current.start()
         streamRecorderRef.current.ondataavailable = ( e: BlobEvent ) => {
+            console.log(e)
             if ( chunks.current ) {
+                console.log('chunks.current')
                 chunks.current.push( e.data )
             }
         }
+        console.log('clases')
         const loader = document.getElementById('loader')
         loader?.classList.add('loader')
         loader?.classList.remove('opacity-0')
@@ -77,13 +81,14 @@ export const RecordVideo = () => {
         formData.append("file", blobToFile( blob ));
         formData.append("upload_preset", "zt69ebf3");
           
-        console.log('Im in')
+        console.log('UploadFile')
 
         fetch(url, {
             method: "POST",
             body: formData
         }).then(( response ) => {
             setLoading( true )
+            console.log('uploading')
             return response.text();
         }).then(( data ) => {
             setLoading( false )
@@ -95,7 +100,7 @@ export const RecordVideo = () => {
 
     }
 
-    const blobToFile = ( blob: Blob, filename: string = 'newVideo.mp4') => {
+    const blobToFile = ( blob: Blob, filename: string = 'newVideo.mov') => {
         const b: any = blob
         b.lastModifiedDate = new Date();
         b.name = filename;
@@ -103,12 +108,13 @@ export const RecordVideo = () => {
     }
 
     useEffect(() => {
+        console.log('First UseEffect');
 
         (async () => {
             audio = document.getElementById("beat")
         
             const gotStream = ( stream: MediaStream ) => {
-        
+                console.log('gotStream')
                 streamRef.current = stream
                 if (videoRef.current) {
                     videoRef.current.srcObject = stream
@@ -116,6 +122,7 @@ export const RecordVideo = () => {
             }
 
             const getStream = async () => {
+                console.log('getStream')
                 if (streamRef.current) {
                     streamRef.current.getTracks().forEach( track => track.stop() )
                 }
@@ -140,12 +147,12 @@ export const RecordVideo = () => {
     useEffect(() => {
       if ( isRecording ) return
       if ( chunks.current.length == 0 ) return
-
+        console.log('UseEffect Recording')
       const blob = new Blob( 
         chunks.current, 
         { 
-            // type: 'video/x-matroska;codecs=avc1,opus',
-            type: 'video/mp4;codecs=avc1',
+            type: 'video/x-matroska;codecs=avc1,opus',
+            // type: 'video/mp4;codecs=avc1',
         })
         // setDownloadLink( URL.createObjectURL(blob) )
         uploadFile( blob )
@@ -165,7 +172,7 @@ export const RecordVideo = () => {
 
     return (
         <>  
-            { ( loading ) && ( <span className="loader_2"></span> ) }
+            { ( loading ) && ( <span className="loader_2 fixed top-0 left-0"></span> ) }
             
 
             <div className="absolute w-11/12 h-5 left-1/2 bottom-44 -translate-x-2/4 rounded-xl overflow-hidden">

@@ -1,5 +1,6 @@
 ---
 import { RecordVideo } from '../components/react/recordVideo'
+import Interface from "../components/astro/interface.astro";
 import Styles from "../css/styles.astro";
 ---
 
@@ -14,10 +15,12 @@ import Styles from "../css/styles.astro";
 	</head>
 	<body>
 		<div class="w-screen">
-			<RecordVideo client:only />
+			<!-- <RecordVideo client:only="react" /> -->
+			<Interface />
 		</div>
 
 		<script is:inline src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.0/flowbite.min.js"></script>
+		<script src="../ts/recordVideo.ts"></script>
 	</body>
 </html>
 
