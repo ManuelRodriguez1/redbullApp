@@ -1,5 +1,11 @@
 <style is:global>
+@font-face {
+  font-family: "Adieu-Bold";
+  src:
+    local("Adieu-Bold"),
+    url("./Adieu-Bold.otf") format("opentype"),
 
+}
 
 
   .loader_2 {
@@ -20,8 +26,87 @@
     100% {
         transform: rotate(360deg);
     }
-    } 
+    }
+   #progress-container {
+    width: 265px;
+    height: 30px;
+    background-color: transparent;
+    position: relative;
+    padding: 3px;
+    border: 3px yellow solid;
+    bottom: 270px;
+    margin: auto;
+  }
+  #progress-bar {
+    width: 0;
+    height: 100%;
+    background-color: yellow;
+  }
+  #progress-text {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 15px;
+    color: white;
+    user-select: none;
+    font-family:Adieu-Bold;
+  }
+  #progressDiv{
+    bottom: 280px;
+    margin: auto;
+    position: relative;
+    width: 300px;
+    margin-top: 18px;
+
+  }
+  svg{
+    margin-left: -5px;
+    margin-top: -1px;
   
+  }
+  #svg1,  #svg2 ,   #svg3{
+    position: absolute;
+  }
+ 
   
+    #progressDiv div{
+        position: relative;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: center;
+    height: 35px;
+    }
+    .finalProgress{
+        position: fixed;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: -70px;
+
+    }
+   .music{
+    font-family:Adieu-Bold;
+   }
+   .music1{
+    font-size: 30px;
+    color:#FFDB3E ;
+
+   }
+   .music2{
+    font-size:  42px;
+    color: #EA3651;
+}
+.music3{
+    font-size:  46px;
+    color: #0442C5;
+
+}
 
 </style>
+

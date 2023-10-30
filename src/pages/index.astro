@@ -2,6 +2,7 @@
 import { RecordVideo } from '../components/react/recordVideo'
 import Interface from "../components/astro/interface.astro";
 import Styles from "../css/styles.astro";
+import Bar from "../components/astro/progressBar.astro";
 ---
 
 <html lang="en">
@@ -17,6 +18,8 @@ import Styles from "../css/styles.astro";
 		<div class="w-screen">
 			<!-- <RecordVideo client:only="react" /> -->
 			<Interface />
+			<Bar />
+		
 		</div>
 
 		<script is:inline src='https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.3/lottie.min.js'></script>
