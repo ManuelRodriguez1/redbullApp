@@ -86,4 +86,8 @@ function startProgressBar() {
     runColorCycle();
   }
 
-  startProgressBar();
+  document.querySelector('button')
+    ?.addEventListener("click", (e) =>{
+      e.preventDefault()
+      startProgressBar()
+    })

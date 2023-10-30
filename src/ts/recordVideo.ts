@@ -55,7 +55,6 @@ document.querySelector('button')
         e.preventDefault();
 
         if ( !streamRef ) return;
-        
         streamRecorderRef = new MediaRecorder( streamRef );
         streamRecorderRef.start();
         streamRecorderRef.ondataavailable = ( e: BlobEvent ) => {
