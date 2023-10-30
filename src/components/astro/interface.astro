@@ -1,12 +1,18 @@
 
 
+<div id="screenLoading" class="fixed top-0 left-0 w-screen h-screen z-10 flex justify-center items-center opacity-0">
+    <div class="flex items-center">
+        <span class="loader_2"></span>
+        <p class="text-white uppercase ml-3">Uploading...</p>
+    </div>
+</div>
 <img src="./frame.png" class="fixed top-0 left-0 h-screen" alt="">
 <video id="videoRecording" class="h-screen w-screen object-cover" autoplay muted></video>
 <audio id="beat" controls class="hidden">
     <source type="audio/mp3" src="./beat_mix.mp3" />
 </audio>
 
-<div class="border border-red-600 rounded-full p-1 fixed left-1/2 -translate-x-2/4 bottom-6 grid align-middle hover:border-none">
+<div class="border border-red-600 rounded-full p-1 fixed z-20 left-1/2 -translate-x-2/4 bottom-6 grid align-middle hover:border-none">
     <button 
         class="bg-red-600 rounded-full w-16 h-16 hover:bg-red-300 hover:w-[68px] hover:h-[68px] transition ease-out"></button>
 </div>
