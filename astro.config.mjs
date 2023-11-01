@@ -9,8 +9,8 @@ import node from "@astrojs/node";
 export default defineConfig({
   integrations: [tailwind(), react(), relativeLinks()],
   root: 'redbullApp',
-  output: "server",
-  adapter: node({
-    mode: "standalone"
-  })
+  // output: "server",
+  // adapter: node({
+  //   mode: "standalone"
+  // })
 });
