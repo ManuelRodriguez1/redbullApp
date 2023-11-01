@@ -15,12 +15,16 @@ const screenLoading: any = document.querySelector('#screenLoading');
 const videoRef: any = document.querySelector('#videoRecording');
 const audioSource: string = '';
 const videoSource: string = '';
+const btnRec: any = document.querySelector('#rec')
+const btnStop: any = document.querySelector('#stop')
 
 let chunks: any[] = [];
 let streamRecorderRef: any = '';
 let streamRef = new MediaStream();
 let audio: any = document.getElementById("beat");
 let _newUrl: string = '';
+let counter: number = 1;
+let _isActive: boolean = false;
 
 ( async () => {
         
@@ -50,30 +54,60 @@ let _newUrl: string = '';
     await getStream()
 })()
 
-document.querySelector('button')
-    ?.addEventListener("click", (e) =>{
-        e.preventDefault();
+btnRec.addEventListener("click", ( e: any ) =>{
+    e.preventDefault();
 
-        if ( !streamRef ) return;
-        
-        streamRecorderRef = new MediaRecorder( streamRef );
-        streamRecorderRef.start();
-        streamRecorderRef.ondataavailable = ( e: BlobEvent ) => {
-            if ( chunks ) {
-                chunks.push( e.data )
-            }
+    _isActive = false;
+
+    btnRec.classList.remove('bg-red-600')
+    btnRec.classList.add('bg-gray-600')
+    btnStop.classList.remove('bg-gray-600')
+    btnStop.classList.add('bg-red-600')
+
+    if ( !streamRef ) return;
+    
+    streamRecorderRef = new MediaRecorder( streamRef );
+    streamRecorderRef.start();
+    streamRecorderRef.ondataavailable = ( e: BlobEvent ) => {
+        if ( chunks ) {
+            chunks.push( e.data )
         }
-        const loader = document.getElementById('loader');
-        loader?.classList.add('loader');
-        loader?.classList.remove('opacity-0');
-        audio.play();
-        timerInit();
+    }
+    const loader = document.getElementById('loader');
+    loader?.classList.add('loader');
+    loader?.classList.remove('opacity-0');
+    audio.play();
+    timerInit();
     
 })
 
+btnStop.addEventListener("click", ( e: any ) => {
+    e.preventDefault();
+
+    btnRec.classList.remove('bg-gray-600')
+    btnRec.classList.add('bg-red-600')
+    btnStop.classList.remove('bg-red-600')
+    btnStop.classList.add('bg-gray-600')
+
+    chunks = [];
+    streamRecorderRef = '';
+    _newUrl = '';
+    counter = 1;
+    _isActive = true;
+
+    audioControls()
+
+})
+
 const timerInit = () => {
-    let counter: number = 1
+
     const intervalTimer = setInterval( () => {
+        
+        if( _isActive ) {
+            clearInterval( intervalTimer ); 
+            return
+        }
+
         counter++
         if ( counter == timer ) {
             clearInterval( intervalTimer )

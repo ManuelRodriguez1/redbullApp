@@ -1,27 +1,48 @@
 <style is:global>
-
-
+  @font-face {
+    font-family: "Adieu-Bold";
+    src: local("Adieu-Bold"), url("./Adieu-Bold.otf") format("opentype");
+  }
 
   .loader_2 {
-    width: 48px;
-    height: 48px;
-    border: 5px solid #FFF;
-    border-bottom-color: #FF3D00;
-    border-radius: 50%;
-    display: inline-block;
-    box-sizing: border-box;
     animation: rotation 1s linear infinite;
-    }
+  }
 
-    @keyframes rotation {
+  .proB,
+  .music {
+    font-family: "Adieu-Bold";
+  }
+
+  .barra-animada {
+    animation: llenarBarra 20s linear forwards;
+  }
+  .numbers{
+    animation: increaseNumber 20s steps(101);
+  }
+
+  @keyframes increaseNumber {
     0% {
-        transform: rotate(0deg);
+      transform: translateY(0);
     }
     100% {
-        transform: rotate(360deg);
+      transform: translateY(-151.5rem);
+    } /* 101 pasos, multiplicas los pasos por la altura del numero, en este caso 1.5rem */
+  }
+  @keyframes llenarBarra {
+    0% {
+      width: 0%;
     }
-    } 
-  
-  
+    100% {
+      width: 100%;
+    }
+  }
 
+  @keyframes rotation {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
 </style>
