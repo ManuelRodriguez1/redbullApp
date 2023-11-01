@@ -7,7 +7,7 @@ const _btnStop: any = document.querySelector('#stop')
 
 let isActive = false;
 const duration = 20000; // Duración total (20 segundos)
-let cont = -1;
+let cont = 0;
 const colors = ['#FFDB3E', '#EA3651', '#0442C5'];
 
 const showIcons = ( i: number ) => {
@@ -61,7 +61,7 @@ const updateColorAndProgress = ( color: string ) => {
 
       cont++;
       
-      if ( cont >= 20 ) {
+      if ( cont > 19 ) {
         cont = 0;
         progress[1].classList.remove('barra-animada');
         progress[2].classList.remove('numbers');

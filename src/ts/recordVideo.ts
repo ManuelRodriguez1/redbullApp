@@ -2,14 +2,15 @@ import Swal from "sweetalert2";
 // import { POST } from '../pages/api/shortUrl.json.ts'
 
 const audioPublicId = 'n8a4qzsxs1anb4j3nfbw'
-const imgPublicId = 'dz6cbwuny3pvgquexxuz'
-const videoPublicId = 'j6cgvsuxd6jzaou5dy4n'
-const _urlImage = `upload/c_pad,h_1350,w_1080/l_img:${ imgPublicId }/fl_layer_apply/l_video:videoAlpha:${  videoPublicId }/co_green,e_make_transparent:14/fl_layer_apply/l_audio:audio:${ audioPublicId }/fl_layer_apply`
+const imgPublicId = 'rubah8nzqyl52urx6t7m'
+const videoPublicId = 'mr2aszxgcccmurmnr8ye'
+const colorTransparency = 'green'
+const _urlImage = `upload/c_pad,h_1350,w_1080/l_img:${ imgPublicId }/fl_layer_apply/l_video:videoAlpha:${  videoPublicId }/co_${ colorTransparency },e_make_transparent:15/fl_layer_apply/l_audio:audio:${ audioPublicId }/fl_layer_apply`
 const url: string = "https://api.cloudinary.com/v1_1/didbn5pv6/auto/upload";  
 const formData = new FormData();
 const timer: number = 62 //cantidad de seg 62
 
-//https://res.cloudinary.com/didbn5pv6/video/upload/c_pad,h_1350,w_1080/l_img:dz6cbwuny3pvgquexxuz/fl_layer_apply/l_video:videoAlpha:j6cgvsuxd6jzaou5dy4n/co_green,e_make_transparent:14/fl_layer_apply/l_audio:audio:svipo909nrnmilfpeqiw/fl_layer_apply/v1698266224/gphk9ynqlw7uaflee6io.mp4
+//https://res.cloudinary.com/didbn5pv6/video/upload/c_pad,h_1350,w_1080/l_img:byhi0m6yicfgmyiwrmvu/fl_layer_apply/l_video:videoAlpha:ku1mmvqtbgjlzfgu6qk2/co_black,e_make_transparent:14/fl_layer_apply/l_audio:audio:svipo909nrnmilfpeqiw/fl_layer_apply/v1698266224/gphk9ynqlw7uaflee6io.mp4
 
 const screenLoading: any = document.querySelector('#screenLoading');
 const videoRef: any = document.querySelector('#videoRecording');
