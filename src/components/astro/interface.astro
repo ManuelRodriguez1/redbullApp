@@ -1,4 +1,6 @@
-
+---
+import ProgressBar from "./progressBar.astro";
+---
 
 <div id="screenLoading" class="fixed top-0 left-0 w-screen h-screen z-10 flex flex-col justify-center items-center opacity-0">
     <div class="flex items-center">
@@ -22,3 +24,6 @@
         class="bg-gray-600 border-4 border-white border-solid rounded-lg w-16 h-16 hover:w-[68px] hover:h-[68px] transition ease-out"></button>
 </div>
 
+<ProgressBar />
+
+<script src="../../ts/recordVideo.ts"></script>

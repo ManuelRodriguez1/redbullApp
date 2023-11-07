@@ -1,0 +1,24 @@
+---
+import Interface from "../components/astro/interface.astro";
+import Styles from "../css/styles.astro";
+import Bar from "../components/astro/progressBar.astro";
+---
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<!-- <link rel="icon" type="image/svg+xml" href="/favicon.svg" /> -->
+		<meta name="viewport" content="width=device-width" />
+		<meta name="generator" content={Astro.generator} />
+		<title>Red Bull App</title>
+		<Styles />
+	</head>
+	<body>
+		<div class="w-screen">
+			<slot />
+		</div>
+
+		<script is:inline src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.0/flowbite.min.js"></script>
+	</body>
+</html>
+

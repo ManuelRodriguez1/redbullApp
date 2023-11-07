@@ -1,0 +1,23 @@
+---
+interface Props{
+    link: string;
+}
+const { button, radius, class, link } = Astro.props
+const styleButton = {
+    'gray': '#000F1E0D',
+    'red': '#DB0A40'
+}
+const colorText = {
+    'gray': '[#000F1E]',
+    'red': 'white'
+}
+const radiusStyle = {
+    '3xl': '3xl',
+    'full': 'full',
+}
+let widthHeight = radius == 'full' ? 'w-12 h-12' : 'py-3 px-6'
+---
+<a href=`/${ link }`
+    class=`justify-center border-2 border-solid inline-flex items-center rounded-${ radiusStyle[ radius ] } text-sm font-normal font-bull bg-[${ styleButton[ button ] }] border-[${ styleButton[ button ] }] text-${ colorText[ button ]} ${ widthHeight }`>
+    <slot />
+</a>

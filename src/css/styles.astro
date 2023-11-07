@@ -3,14 +3,21 @@
     font-family: "Adieu-Bold";
     src: local("Adieu-Bold"), url("./Adieu-Bold.otf") format("opentype");
   }
+  @font-face {
+    font-family: "Bull-Regular";
+    src: local("Bull-Regular"), url("./Bull-Regular.otf") format("opentype");
+  }
 
   .loader_2 {
     animation: rotation 1s linear infinite;
   }
 
   .proB,
-  .music {
+  .music, .font-Adieu {
     font-family: "Adieu-Bold";
+  }
+  .font-bull{
+    font-family: "Bull-Regular";
   }
 
   .barra-animada {
@@ -18,6 +25,13 @@
   }
   .numbers{
     animation: increaseNumber 20s steps(101);
+  }
+
+  .logoRb{
+    transform: translateY(-14vh);
+    width: 300px;
+    height: 308px;
+    animation: logoIntro .5s linear;
   }
 
   @keyframes increaseNumber {
@@ -43,6 +57,19 @@
     }
     100% {
       transform: rotate(360deg);
+    }
+  }
+
+  @keyframes logoIntro { 
+    0% {
+      transform: translateY(0);
+      width: 398px;
+      height: 408px;
+    }
+    100% {
+      transform: translateY(-14vh);
+      width: 300px;
+      height: 308px;
     }
   }
 </style>

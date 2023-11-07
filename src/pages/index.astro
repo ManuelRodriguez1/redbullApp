@@ -1,30 +1,33 @@
 ---
-import { RecordVideo } from '../components/react/recordVideo'
-import Interface from "../components/astro/interface.astro";
-import Styles from "../css/styles.astro";
-import Bar from "../components/astro/progressBar.astro";
+import GeneralLayout  from "../layouts/generalLayout.astro";
+import  ButtonNext  from "../components/astro/Buttons/buttonNext.astro";
+import RedBull from "../components/astro/icons/RedBull.astro";
+
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<!-- <link rel="icon" type="image/svg+xml" href="/favicon.svg" /> -->
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Red Bull App</title>
-		<Styles />
-	</head>
-	<body>
-		<div class="w-screen">
-			<!-- <RecordVideo client:only="react" /> -->
-			<Interface />
-			<Bar />
+<GeneralLayout>
+	<main class="bg-[url('./images/bg.png')] bg-cover bg-no-repeat bg-center">
+		<div class="animationDiv w-screen h-screen flex justify-center items-center bg-[url('./images/splashes.png')] bg-[#0C134F] transition duration-500 flex-col">
+			<RedBull />
+			<div class="animationDiv top-[54vh] text-center text-white font-Adieu uppercase opacity-0 transition fixed duration-500">
+				<h1 class="text-[54px] leading-10 font-black">
+					Bienvenido
+				</h1>
+				<p class="text-base font-bold mt-2.5">A Red Bull Batalla freestyle booth</p>
+				<p class="text-xl mt-[69px] mb-[73px] w-[464px] leading-5">Atrévete y demuestra tu talento para improvisar.</p>
+				<ButtonNext link="rec" text="Continuar" />
+			</div>
 		</div>
+	</main>
+</GeneralLayout>
 
-		<script is:inline src='https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.3/lottie.min.js'></script>
-		<script is:inline src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.0/flowbite.min.js"></script>
-		<script src="../ts/recordVideo.ts"></script>
-		<script src="../ts/progressBar.ts"></script>
-	</body>
-</html>
+<script>
+setTimeout(() => {
+	const div = document.querySelectorAll('.animationDiv')
+	div[0].classList.remove('bg-[#0C134F]')
+	setTimeout(() => {
+		div[1].classList.remove('opacity-0')
+	}, 300);
+}, 1000);
 
+</script>
