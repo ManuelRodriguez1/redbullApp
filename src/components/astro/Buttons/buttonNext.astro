@@ -1,7 +1,7 @@
 ---
 import Button from "./layout/button.astro";
 
-const { text, link } = Astro.props
+const { text, link, animationF } = Astro.props
 ---
 
-<Button class="rounded-3xl bg-[#DB0A40] border-[#DB0A40]" button="red" radius="3xl" link={ link } >{ text }</Button>
+<Button button="red" radius="3xl" link={ link } animationF={ animationF } >{ text }</Button>
