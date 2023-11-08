@@ -1,0 +1,118 @@
+---
+import ButtonNext from "../components/astro/Buttons/buttonNext.astro";
+import ButtonBack from "../components/astro/Buttons/buttonBack.astro";
+import ButtonHome from "../components/astro/Buttons/buttonHome.astro";
+import RedBull from "../components/astro/icons/RedBull.astro";
+import StepsLayout from "../layouts/stepsLayout.astro";
+
+export async function getStaticPaths() {
+	const pages = [
+		{
+			slug: 'step-1',
+			text: '1. Usa los auriculares',
+			link: 'step-2',
+			link_back: 'steps',
+			bottom: '124px',
+			animation: true
+		},
+		{
+			slug: 'step-2',
+			text: '2. Presiona el botón de “comenzar”.',
+			link: 'step-3',
+			link_back: 'step-1',
+			bottom: '124px'
+		},
+		{
+			slug: 'step-3',
+			text: '3. improvisa tu mejor rima para cada uno de los beats que empezarán a sonar.',
+			link: 'step-4',
+			link_back: 'step-2',
+			bottom: '72px'
+		},
+		{
+			slug: 'step-4',
+			text: '4. Una vez finalizada la grabación, presiona el botón de “enviar” para recibir el video de tu improvisación por correo electrónico.',
+			link: 'ready',
+			link_back: 'step-3',
+			bottom: '46px'
+		},
+		{
+			slug: 'ready',
+			title: '¿Estás listo para improvisar?',
+			text: 'Comparte tu video en redes sociales usando el hashtag',
+			link: 'rec',
+			link_back: 'step-4',
+			bottom: '55px'
+		},
+	];
+
+	return pages.map(({ slug, title, text, link, link_back, bottom, animation }) => {
+		return {
+			params: { slug },
+			props: { title, text, link, link_back, bottom, animation },
+		}
+	})
+}
+
+const { title, text, link, link_back, bottom, animation } = Astro.props;
+
+const bt: any = {
+	'124px': 'mb-[124px]',
+	'72px': 'mb-[72px]',
+	'46px': 'mb-[46px]',
+	'55px': 'mb-[55px]',
+}
+
+---
+
+<StepsLayout>
+	<RedBull width="266" height="272" size={ false } />
+	{
+		(()=> {
+			if(!title){
+				return(
+					<span class="icon w-[150px] h-[150px] bg-no-repeat bg-cover bg-[url(./images/css_sprites1.png)] mt-[90px]"></span>
+				)
+			}
+		})()
+	}
+	<div class={`flex items-center flex-col text-[#0A2E89] font-Adieu text-center uppercase text-[22px] mt-12 ${ bt[bottom] }`}>
+		{
+			(()=>{
+				if(!!title){
+					return(
+						<h2 class="text-[44px] leading-none w-[582px] mb-[55px] mt-3">{ title }</h2>
+					)
+				}
+			})()
+		}
+		<p class={`font-normal leading-tight ${ (!!title) ? 'w-[490px]': 'w-[607px]'}`}>
+			{ text }
+		</p>
+		{
+			(() => {
+				if(!!title){
+					return (
+						<p class="text-[#DD0841]">#redbullbatalla</p>
+						<p class="text-sm w-[463px] mt-14">Nota: presiona el botón de “stop” en Caso de querer reiniciar la grabación.</p>
+					)
+				}
+			})()
+		}
+	</div>
+	<div class="flex gap-x-6">
+		<ButtonHome link="" animation={ animation } />
+		<ButtonBack link={ link_back } text="Atras" animation={ animation } />
+		<ButtonNext link={ link } text="Siguiente" animationF={ animation } />
+	</div>
+</StepsLayout>
+
+<style>
+	.icon {
+    	animation: sprite 3s steps(119) infinite;
+  	}
+	@keyframes sprite {
+		from { background-position: 0% 0; }
+		to { background-position: 100% 0;  }
+	}
+</style>

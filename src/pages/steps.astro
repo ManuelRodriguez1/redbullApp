@@ -1,0 +1,22 @@
+---
+import ButtonNext from "../components/astro/Buttons/buttonNext.astro";
+import ButtonHome from "../components/astro/Buttons/buttonHome.astro";
+import RedBull from "../components/astro/icons/RedBull.astro";
+import StepsLayout from "../layouts/stepsLayout.astro";
+
+---
+
+<StepsLayout>
+	<RedBull width="266" height="272" size={ false } />
+	<div class="flex flex-col items-center my-[86px]">
+		<span class="h-2.5 w-[362px] bg-gradient-to-r from-[#1844B3] via-[#1083D3] to-[#D2003C]"></span>
+		<h2 class="text-[#0A2E89] font-Adieu uppercase text-[44px] font-bold text-center w-[542px] leading-tight my-10">
+			sigue los pasos e improvisa tu mejor rima.
+		</h2>
+		<span class="h-2.5 w-[362px] bg-gradient-to-r from-[#1844B3] via-[#1083D3] to-[#D2003C]"></span>
+	</div>
+	<div class="flex gap-x-6">
+		<ButtonHome link="" />
+		<ButtonNext link="step-1" text="Siguiente" />
+	</div>
+</StepsLayout>
