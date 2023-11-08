@@ -1,17 +1,8 @@
 import Swal from "sweetalert2";
-// import { POST } from '../pages/api/shortUrl.json.ts'
-
-// const audioPublicId = 'n8a4qzsxs1anb4j3nfbw'
-// const imgPublicId = 'dz6cbwuny3pvgquexxuz'
-// const videoPublicId = 'j6cgvsuxd6jzaou5dy4n'
-// const colorTransparency = 'green'
-// const _urlImage = `upload/c_pad,h_1350,w_1080/l_img:${ imgPublicId }/fl_layer_apply/l_video:videoAlpha:${  videoPublicId }/co_${ colorTransparency },e_make_transparent:15/fl_layer_apply/l_audio:audio:${ audioPublicId }/fl_layer_apply`
 const _urlImage = `upload/t_rb`
 const url: string = "https://api.cloudinary.com/v1_1/didbn5pv6/auto/upload";  
 const formData = new FormData();
 const timer: number = 62 //cantidad de seg 62
-
-//https://res.cloudinary.com/didbn5pv6/video/upload/t_rb/v1698955341/qnpzjp17nfsl4vdi6lvc.mp4
 
 const screenLoading: any = document.querySelector('#screenLoading');
 const videoRef: any = document.querySelector('#videoRecording');
@@ -61,10 +52,15 @@ btnRec.addEventListener("click", ( e: any ) =>{
 
     _isActive = false;
 
-    btnRec.classList.remove('bg-red-600')
-    btnRec.classList.add('bg-gray-600')
-    btnStop.classList.remove('bg-gray-600')
-    btnStop.classList.add('bg-red-600')
+    btnRec.classList.remove('bg-[#DB0A40]')
+    btnRec.classList.remove('border-[#DB0A40]')
+    btnRec.classList.add('bg-[#ffffff0d]')
+    btnRec.classList.add('border-[#ffffff33]')
+
+    btnStop.classList.remove('bg-[#ffffff0d]')
+    btnStop.classList.remove('border-[#ffffff33]')
+    btnStop.classList.add('bg-[#DB0A40]')
+    btnStop.classList.add('border-[#DB0A40]')
 
     if ( !streamRef ) return;
     
@@ -86,10 +82,15 @@ btnRec.addEventListener("click", ( e: any ) =>{
 btnStop.addEventListener("click", ( e: any ) => {
     e.preventDefault();
 
-    btnRec.classList.remove('bg-gray-600')
-    btnRec.classList.add('bg-red-600')
-    btnStop.classList.remove('bg-red-600')
-    btnStop.classList.add('bg-gray-600')
+    btnRec.classList.remove('bg-[#ffffff0d]')
+    btnRec.classList.remove('border-[#ffffff33]')
+    btnRec.classList.add('bg-[#DB0A40]')
+    btnRec.classList.add('border-[#DB0A40]')
+    
+    btnStop.classList.remove('bg-[#DB0A40]')
+    btnStop.classList.remove('border-[#DB0A40]')
+    btnStop.classList.add('bg-[#ffffff0d]')
+    btnStop.classList.add('border-[#ffffff33]')
 
     chunks = [];
     streamRecorderRef = '';
@@ -162,8 +163,7 @@ const uploadFile = ( blob: Blob ) => {
         const newUrl = secure_url.split('upload')
         _newUrl = newUrl[0]+_urlImage+newUrl[1]
 
-        // shortUrl( _newUrl ) //TODO: Seguir probando
-        alertMessage( _newUrl ) //? Para que Jaime lo pruebe
+        alertMessage( _newUrl ) 
     });
 
 }
@@ -173,21 +173,6 @@ const blobToFile = ( blob: Blob, filename: string = 'newVideo.mov') => {
     b.lastModifiedDate = new Date();
     b.name = filename;
     return blob as File;
-}
-
-const shortUrl = async ( _url: any ) => {
-
-    
-    fetch(window.location+'api/shortUrl.json', {
-        body: JSON.stringify({
-            "domain": "l.rblab.io",
-            "originalURL": _url
-        })
-    }).then( ( response ) => {
-        console.log(response)
-    })
-    //    let resp = await POST( _url )
-    //    console.log( resp )
 }
 
 
