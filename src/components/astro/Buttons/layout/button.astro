@@ -14,14 +14,14 @@ const colorText: any = {
     'red': 'white'
 }
 const radiusStyle: any = {
-    '3xl': '3xl',
-    'full': 'full',
+    '3xl': 'rounded-3xl',
+    'full': 'rounded-full',
 }
 let widthHeight = radius == 'full' ? 'w-12 h-12' : 'py-3 px-6'
 
 ---
 <a href=`/${ link }`
-    class=`${ (animation)? 'slideBack': '' } ${ (animationF)? 'slideForward': '' } justify-center border-2 border-solid inline-flex items-center rounded-${ radiusStyle[ radius ] } text-sm font-normal font-bull ${ styleButton[ button ] } ${ styleBorder[ button ] } text-${ colorText[ button ]} ${ widthHeight }`>
+    class=`${ (animation)? 'slideBack': '' } ${ (animationF)? 'slideForward': '' }justify-center border-2 border-solid inline-flex items-center ${ radiusStyle[ radius ] } text-sm font-normal font-bull capitalize ${ styleButton[ button ] } ${ styleBorder[ button ] } text-${ colorText[ button ]} ${ widthHeight }`>
     <slot />
 </a>
 
