@@ -13,28 +13,36 @@ export async function getStaticPaths() {
 			link: 'step-2',
 			link_back: 'steps',
 			bottom: '124px',
-			animation: true
+			animation: true,
+			image: 'bg-[url(./images/headphones_sprites.png)]',
+			steps: '119'
 		},
 		{
 			slug: 'step-2',
 			text: '2. Presiona el botón de “comenzar”.',
 			link: 'step-3',
 			link_back: 'step-1',
-			bottom: '124px'
+			bottom: '124px',
+			image: 'bg-[url(./images/fingerTap_sprites.png)]',
+			steps: '119'
 		},
 		{
 			slug: 'step-3',
 			text: '3. improvisa tu mejor rima para cada uno de los beats que empezarán a sonar.',
 			link: 'step-4',
 			link_back: 'step-2',
-			bottom: '72px'
+			bottom: '72px',
+			image: 'bg-[url(./images/mic_sprites.png)]',
+			steps: '139'
 		},
 		{
 			slug: 'step-4',
 			text: '4. Una vez finalizada la grabación, presiona el botón de “enviar” para recibir el video de tu improvisación por correo electrónico.',
 			link: 'ready',
 			link_back: 'step-3',
-			bottom: '46px'
+			bottom: '46px',
+			image: 'bg-[url(./images/email_sprites.png)]',
+			steps: '49'
 		},
 		{
 			slug: 'ready',
@@ -46,15 +54,15 @@ export async function getStaticPaths() {
 		},
 	];
 
-	return pages.map(({ slug, title, text, link, link_back, bottom, animation }) => {
+	return pages.map(({ slug, title, text, link, link_back, bottom, animation, image, steps }) => {
 		return {
 			params: { slug },
-			props: { title, text, link, link_back, bottom, animation },
+			props: { title, text, link, link_back, bottom, animation, image, steps },
 		}
 	})
 }
 
-const { title, text, link, link_back, bottom, animation } = Astro.props;
+const { title, text, link, link_back, bottom, animation, image, steps } = Astro.props;
 
 const bt: any = {
 	'124px': 'mb-[124px]',
@@ -71,7 +79,7 @@ const bt: any = {
 		(()=> {
 			if(!title){
 				return(
-					<span class="icon w-[150px] h-[150px] bg-no-repeat bg-cover bg-[url(./images/css_sprites1.png)] mt-[90px]"></span>
+					<span class={`icon w-[150px] h-[150px] bg-no-repeat bg-cover ${ image } mt-[90px]`}></span>
 				)
 			}
 		})()
@@ -107,9 +115,9 @@ const bt: any = {
 	</div>
 </StepsLayout>
 
-<style>
+<style define:vars={{ steps }}>
 	.icon {
-    	animation: sprite 3s steps(119) infinite;
+    	animation: sprite 3s steps(var(--steps)) infinite;
   	}
 	@keyframes sprite {
 		from { background-position: 0% 0; }
