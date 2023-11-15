@@ -1,4 +1,4 @@
-<style is:global>
+<style is:global lang="scss">
   @font-face {
     font-family: "Adieu-Bold";
     src: local("Adieu-Bold"), url("./Adieu-Bold.otf") format("opentype");
@@ -6,10 +6,6 @@
   @font-face {
     font-family: "Bull-Regular";
     src: local("Bull-Regular"), url("./Bull-Regular.otf") format("opentype");
-  }
-
-  .loader_2 {
-    animation: rotation 1s linear infinite;
   }
 
   .proB,
@@ -20,44 +16,47 @@
     font-family: "Bull-Regular";
   }
 
-  .barra-animada {
-    animation: llenarBarra 20s linear forwards;
-  }
-  .numbers{
-    animation: increaseNumber 20s steps(101);
-  }
-
   .logoRb{
     transform: translateY(-14vh);
     width: 300px;
     height: 308px;
     animation: logoIntro .5s linear;
   }
-
-  @keyframes increaseNumber {
-    0% {
-      transform: translateY(0);
-    }
-    100% {
-      transform: translateY(-151.5rem);
-    } /* 101 pasos, multiplicas los pasos por la altura del numero, en este caso 1.5rem */
+  .swal2-popup{
+    padding-bottom: 0 !important;
+    border-radius: 20px !important;
   }
-  @keyframes llenarBarra {
-    0% {
-      width: 0%;
-    }
-    100% {
-      width: 100%;
-    }
+  .swal2-title{
+    padding-top: 53px !important;
+  }
+  .swal2-confirm{
+    border-radius: 999px !important;
+    padding: 14px 24px !important;
+  }
+  .swal2-deny{
+    width: 48px !important;
+    height: 48px !important;
+    border-radius: 100% !important;
+    border: 2px solid rgba(0, 15, 30, 0.20) !important;
+    margin-right: 24px;
+  }
+  .swal2-deny svg{
+    margin-left: -4px;
+  }
+  .swal2-footer{
+    border-top: 0px !important;
+    margin-top: 0 !important;
+    margin-bottom: 44px !important;
   }
 
-  @keyframes rotation {
-    0% {
-      transform: rotate(0deg);
-    }
-    100% {
-      transform: rotate(360deg);
-    }
+  .loader::after {
+    border-width: 5px;
+    animation: prixClipFix 20s linear reverse;
+  }
+
+  .loader:before {
+    content: url("./images/check.svg");
+    animation: percentage 20s linear;
   }
 
   @keyframes logoIntro { 
@@ -72,4 +71,31 @@
       height: 308px;
     }
   }
+
+  @keyframes prixClipFix {
+      0%   {clip-path:polygon(50% 50%,0 0,0 0,0 0,0 0,0 0)}
+      25%  {clip-path:polygon(50% 50%,0 0,100% 0,100% 0,100% 0,100% 0)}
+      50%  {clip-path:polygon(50% 50%,0 0,100% 0,100% 100%,100% 100%,100% 100%)}
+      75%  {clip-path:polygon(50% 50%,0 0,100% 0,100% 100%,0 100%,0 100%)}
+      100% {clip-path:polygon(50% 50%,0 0,100% 0,100% 100%,0 100%,0 0)}
+  }
+  
+
+@keyframes percentage {
+  @for $i from 0 through 100 {
+    #{percentage(calc($i / 100))} {
+      // Estilos en cada porcentaje
+     @if( $i == 100 ){
+        content: url("./images/check.svg");
+        width: 40px;
+        height: 40px;
+     }@else{
+        content: "#{ $i }";
+        width: auto;
+        height: auto;
+     }
+     
+    }
+  }
+}
 </style>

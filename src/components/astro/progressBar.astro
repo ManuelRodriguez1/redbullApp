@@ -1,31 +1,12 @@
 ---
 import Bars from "./bars.astro";
-const datos = [...Array(101).keys()];
 ---
-<div class="fixed h-screen top-0 left-0 w-screen">
-  <div class="finalProgress absolute bottom-[23vh] left-1/2 -translate-x-1/2">
-    <div class="flex justify-end">
-      <div class="proB relative bg-transparent border-yellow-200 border-solid border-2 w-[274px] h-8 p-0.5">
-        <div class="proB w-0 h-full bg-yellow"></div>
-        <div class="absolute top-0 left-0 right-0 bottom-0 flex justify-center items-center text-base text-white select-none">
-          <div class="overflow-hidden h-6">
-            <div class="grid justify-items-center proB">
-            {
-                datos.map((e) => (
-                  <span>{e}%</span>
-                ))
-              }
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div id="progressDiv" class="relative m-auto mt-[18px] w-[300px]">
-          <Bars color="FFDB3E" text="REGGAETON" />
-          <Bars color="EA3651" text="DUBSTEP" />
-          <Bars color="0442C5" text="TECHNO" />
-    </div>
-  </div>
+<div class="flex flex-row relative mx-auto bottom-[40vh] w-[550px]">
+
+  <Bars text="REGGAETON" className="loader1" />
+  <Bars text="DUBSTEP" className="loader2" />
+  <Bars text="TECHNO" className="loader3" />
+
 </div>
 
 <script src="../../ts/progressBar.ts"></script> 
