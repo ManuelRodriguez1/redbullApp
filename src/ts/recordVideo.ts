@@ -1,4 +1,4 @@
-import Swal from "sweetalert2";
+import { alertMessage } from "./alertMessage";
 const _urlImage = `upload/t_rb`
 const url: string = "https://api.cloudinary.com/v1_1/didbn5pv6/auto/upload";  
 const formData = new FormData();
@@ -164,6 +164,7 @@ const uploadFile = ( blob: Blob ) => {
         _newUrl = newUrl[0]+_urlImage+newUrl[1]
 
         alertMessage( _newUrl ) 
+        btnStop.click();
     });
 
 }
@@ -176,11 +177,3 @@ const blobToFile = ( blob: Blob, filename: string = 'newVideo.mov') => {
 }
 
 
-const alertMessage = ( url: string ) => {
-    screenLoading.classList.add('opacity-0')
-    Swal.fire({
-        title: 'Video Created',
-        html: `Send your video by Email<br /><br /> <a href="mailto:youremail@here.com?subject=Video%20Red%20Bull&body=Download%20video%20here:%20${ url }" style='text-decoration: underline;'>Click here</a>`,
-        icon: 'success',
-      })
-}
