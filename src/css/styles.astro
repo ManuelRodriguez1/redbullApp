@@ -56,8 +56,23 @@
 
   .loader:before {
     content: url("./images/check.svg");
+    font-family: "Adieu-Bold";
     animation: percentage 20s linear;
   }
+
+  .loader_2 {
+    animation: rotation 1s linear infinite;
+  }
+
+
+  @keyframes rotation {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+    } 
 
   @keyframes logoIntro { 
     0% {
@@ -84,7 +99,6 @@
 @keyframes percentage {
   @for $i from 0 through 100 {
     #{percentage(calc($i / 100))} {
-      // Estilos en cada porcentaje
      @if( $i == 100 ){
         content: url("./images/check.svg");
         width: 40px;
@@ -98,4 +112,5 @@
     }
   }
 }
+
 </style>

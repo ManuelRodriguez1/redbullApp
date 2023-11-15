@@ -175,5 +175,3 @@ const blobToFile = ( blob: Blob, filename: string = 'newVideo.mov') => {
     b.name = filename;
     return blob as File;
 }
-
-

@@ -3,7 +3,8 @@ import Swal from "sweetalert2";
 export const alertMessage = ( url: string ) => {
     screenLoading.classList.add('opacity-0')
     Swal.fire({
-        title: `<div class="w-28 h-28 border-[6px] border-[#0A2E89] rounded-full mx-auto flex justify-center items-center"><img src="./images/checkIcon.svg" /></div>
+        allowOutsideClick: false,
+        title: `<div class="w-28 h-28 border-[6px] border-[#0A2E89] rounded-full mx-auto flex justify-center items-center"><img src="../images/checkIcon.svg" /></div>
         <h2 class=" -mt-3 font-bold font-Adieu uppercase text-[26px] text-[#0A2E89]">Video finalizado</h2>`,
         html: `<p class="text-sm font-Adieu uppercase w-[363px] mx-auto text-[#0A2E89]">Presiona el botón de “enviar” para recibir el link de descarga en tu correo electrónico.</p>`,
         reverseButtons: true,
@@ -21,7 +22,8 @@ export const alertMessage = ( url: string ) => {
         if ( result.isConfirmed ) {
             location.href = `mailto:youremail@here.com?subject=Video%20Red%20Bull&body=Download%20video%20here:%20${ url }`;
             Swal.fire({
-                title: `<div class="flex justify-center items-center"><img src="./images/sentIcon.svg" /></div>
+                allowOutsideClick: false,
+                title: `<div class="flex justify-center items-center"><img src="../images/sentIcon.svg" /></div>
                 <h2 class=" -mt-3 font-bold font-Adieu uppercase text-[26px] text-[#0A2E89]">Link enviado</h2>`,
                 html: `<p class="text-sm font-Adieu uppercase w-[363px] mx-auto text-[#0A2E89]">Comparte tu video en redes sociales usando el hashtag <span class="text-[#DD0841]">#redbullbatalla</span></p>`,
                 confirmButtonText: `Finalizar`,
