@@ -1,4 +1,8 @@
 <style is:global lang="scss">
+  $beat1: 21;
+  $beat2: 17;
+  $beat3: 20;
+
   @font-face {
     font-family: "Adieu-Bold";
     src: local("Adieu-Bold"), url("./Adieu-Bold.otf") format("opentype");
@@ -56,15 +60,31 @@
     margin-bottom: 44px !important;
   }
 
-  .loader::after {
+  .loader1::after, .loader2::after, .loader3::after {
     border-width: 5px;
-    animation: prixClipFix 20s linear reverse;
+  }
+  .loader1::after{
+    animation: prixClipFix #{ $beat1 }s linear reverse;
+  }
+  .loader2::after{
+    animation: prixClipFix #{ $beat2 }s linear reverse;
+  }
+  .loader3::after{
+    animation: prixClipFix #{ $beat3 }s linear reverse;
   }
 
-  .loader:before {
+  .loader1:before, .loader2:before, .loader3:before {
     content: url("./images/check.svg");
     font-family: "Adieu-Bold";
-    animation: percentage 20s linear;
+  }
+  .loader1:before{
+    animation: percentage #{ $beat1 }s linear;
+  }
+  .loader2:before{
+    animation: percentage #{ $beat2 }s linear;
+  }
+  .loader3:before{
+    animation: percentage #{ $beat3 }s linear;
   }
 
   .loader_2 {
