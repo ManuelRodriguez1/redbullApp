@@ -204,6 +204,6 @@ const alertMessage = async ( url: string ) => {
         denyButtonColor: '#000f1e0d',
         confirmButtonText: `<span class="flex gap-2 items-center text-sm">Finalizar</span>`,
         confirmButtonColor: "#DB0A40",
-        footer: `<p class="font-bull text-[#0A2E89] w-[275px] mx-auto text-xs">Espera de 10 a 20 minutos para recibir el link de descarga del video en tu correo electrónico.</p>`
+        // footer: `<p class="font-bull text-[#0A2E89] w-[275px] mx-auto text-xs">Espera de 10 a 20 minutos para recibir el link de descarga del video en tu correo electrónico.</p>`
       })
 }
