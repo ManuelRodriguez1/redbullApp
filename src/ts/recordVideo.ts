@@ -1,6 +1,6 @@
 import Swal from "sweetalert2";
 
-const _urlImage = `upload/t_rb`
+const _urlImage = `upload/t_rb2`
 const url: string = "https://api.cloudinary.com/v1_1/didbn5pv6/auto/upload";  
 const formData = new FormData();
 const timer: number = 58 //cantidad de seg
